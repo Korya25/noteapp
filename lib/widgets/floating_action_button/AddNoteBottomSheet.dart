@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notesapp/cubits/add_note/add_note_cuibt.dart';
 import 'package:notesapp/cubits/add_note/add_note_state.dart';
 import 'package:notesapp/widgets/main/add_note_form.dart';
@@ -12,12 +11,13 @@ class AddNoteBottomSheet extends StatelessWidget {
     return BlocProvider(
       create: (context) => AddNoteCuibt(),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: BlocConsumer<AddNoteCuibt, AddNoteState>(
           builder: (context, state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is AddNoteLoading ? true : false,
-                child: const AddNoteForm());
+            return AbsorbPointer(
+              absorbing: state is AddNoteLoading ? true : false,
+              child: const AddNoteForm(),
+            );
           },
           listener: (context, state) {
             if (state is AddNotefailure) {

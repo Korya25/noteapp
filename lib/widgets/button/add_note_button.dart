@@ -7,10 +7,12 @@ class AddNoteButton extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.title,
+    required this.isloading,
   });
 
   final VoidCallback onTap;
   final String title;
+  final bool isloading;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,12 @@ class AddNoteButton extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(vertical: 12),
         alignment: Alignment.center,
-        child: Text(
-          title,
-          style: AppTextStyles.noteTitle,
-        ),
+        child: isloading
+            ? const Center(child: CircularProgressIndicator())
+            : Text(
+                title,
+                style: AppTextStyles.noteTitle,
+              ),
       ),
     );
   }

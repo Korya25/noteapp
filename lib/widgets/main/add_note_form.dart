@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/cubits/add_note/add_note_cuibt.dart';
+import 'package:notesapp/cubits/add_note/add_note_state.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/widgets/button/add_note_button.dart';
 import 'package:notesapp/widgets/other/CustomTextFormField.dart';
@@ -19,7 +20,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, subtitle;
-
+  bool isloading = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -47,23 +48,29 @@ class _AddNoteFormState extends State<AddNoteForm> {
             const SizedBox(
               height: 30,
             ),
-            AddNoteButton(
-              onTap: () {
-                // Handle add note action
-                if (formkey.currentState!.validate()) {
-                  formkey.currentState!.save();
-                  var notemodel = NoteModel(
-                      title: title!,
-                      subtitle: subtitle!,
-                      date: DateTime.now().toString());
-                  BlocProvider.of<AddNoteCuibt>(context).addNote(notemodel);
-                } else {
-                  setState(() {
-                    autovalidateMode = AutovalidateMode.always;
-                  });
-                }
+            BlocBuilder<AddNoteCuibt, AddNoteState>(
+              builder: (context, state) {
+                return AddNoteButton(
+                  isloading: state is AddNoteLoading ? true : false,
+                  onTap: () {
+                    // Handle add note action
+                    if (formkey.currentState!.validate()) {
+                      formkey.currentState!.save();
+
+                      var notemodel = NoteModel(
+                          title: title!,
+                          subtitle: subtitle!,
+                          date: DateTime.now().toString());
+                      BlocProvider.of<AddNoteCuibt>(context).addNote(notemodel);
+                    } else {
+                      setState(() {
+                        autovalidateMode = AutovalidateMode.always;
+                      });
+                    }
+                  },
+                  title: 'Add Note',
+                );
               },
-              title: 'Add Note',
             ),
             const SizedBox(
               height: 20,
