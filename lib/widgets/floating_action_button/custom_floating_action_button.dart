@@ -11,7 +11,11 @@ class CustomFloatingActionButton extends StatelessWidget {
       onPressed: () {
         showModalBottomSheet(
           context: context,
-          builder: (context) => const AddNoteBottomSheet(),
+          builder: (context) => Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: const AddNoteBottomSheet(),
+          ),
         );
       },
       child: const Icon(
