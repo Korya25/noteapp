@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notesapp/constants/text_style.dart';
+import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/screens/edit_view.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({
     super.key,
-    required this.title,
-    required this.description,
-    required this.date,
     required this.noteCardColor,
+    required this.note,
   });
-
-  final String title;
-  final String description;
-  final String date;
+  final NoteModel note;
   final Color noteCardColor;
 
   @override
@@ -41,10 +37,10 @@ class NoteCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              title: Text(title, style: AppTextStyles.noteTitle),
+              title: Text(note.title, style: AppTextStyles.noteTitle),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 7),
-                child: Text(description,
+                child: Text(note.subtitle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: AppTextStyles.noteDescription),
@@ -64,7 +60,7 @@ class NoteCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'May21 , 2022',
+                    note.date,
                     style: AppTextStyles.noteDate,
                     textAlign: TextAlign.end,
                   ),

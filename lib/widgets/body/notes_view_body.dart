@@ -29,10 +29,11 @@ class NotesViewBody extends StatelessWidget {
           itemCount: notes.length,
           itemBuilder: (BuildContext context, int index) {
             return NoteCard(
-              title: 'Flutter tips',
-              description: "Learn the best practices in Dart programming.",
-              date: 'June 12, 2023',
               noteCardColor: _generateRandomColor(),
+              note: NoteModel(
+                  title: 'title',
+                  subtitle: 'subtitle',
+                  date: DateTime.now().toString()),
             );
           },
         );
@@ -40,3 +41,8 @@ class NotesViewBody extends StatelessWidget {
     );
   }
 }
+/*
+ title: 'Flutter tips',
+                description:  "Learn the best practices in Dart programming.",
+                 date: '',
+*/
