@@ -58,9 +58,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       formkey.currentState!.save();
 
                       var notemodel = NoteModel(
-                          title: title!,
-                          subtitle: subtitle!,
-                          date: DateTime.now().toString());
+                        title: title!,
+                        subtitle: subtitle!,
+                        date: DateTime.now().toString(),
+                      );
                       BlocProvider.of<AddNoteCuibt>(context).addNote(notemodel);
                     } else {
                       setState(() {

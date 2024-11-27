@@ -9,7 +9,8 @@ import 'package:notesapp/widgets/main/NoteCardWidget.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});
-// Generate a random color
+
+  // Generate a random color
   Color _generateRandomColor() {
     final Random random = Random();
     return Color.fromARGB(
@@ -25,15 +26,13 @@ class NotesViewBody extends StatelessWidget {
     return BlocBuilder<NoteCuibt, NoteState>(
       builder: (context, state) {
         List<NoteModel> notes = BlocProvider.of<NoteCuibt>(context).notes ?? [];
+
         return ListView.builder(
           itemCount: notes.length,
           itemBuilder: (BuildContext context, int index) {
             return NoteCard(
               noteCardColor: _generateRandomColor(),
-              note: NoteModel(
-                  title: 'title',
-                  subtitle: 'subtitle',
-                  date: DateTime.now().toString()),
+              note: notes[index], // استخدام العنصر المناسب
             );
           },
         );
@@ -41,8 +40,3 @@ class NotesViewBody extends StatelessWidget {
     );
   }
 }
-/*
- title: 'Flutter tips',
-                description:  "Learn the best practices in Dart programming.",
-                 date: '',
-*/

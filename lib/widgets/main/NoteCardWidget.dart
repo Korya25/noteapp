@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notesapp/constants/text_style.dart';
+import 'package:notesapp/cubits/notes_cuibt.dart/notes_cuibt.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/screens/edit_view.dart';
 
@@ -51,7 +53,18 @@ class NoteCard extends StatelessWidget {
                   color: Colors.black,
                   size: 24,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  if (note.isInBox) {
+                    note.delete();
+                    BlocProvider.of<NoteCuibt>(context).fetchAllNotes();
+                  } else {
+                    print('The note is not in a box!');
+                  }
+                },
+                /*onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NoteCuibt>(context).fetchAllNotes();
+                },*/
               ),
             ),
             Padding(
@@ -73,64 +86,3 @@ class NoteCard extends StatelessWidget {
     );
   }
 }
-
-/*
-import 'package:flutter/material.dart';
-import 'package:notesapp/constants/text_style.dart';
-
-class NoteCard extends StatelessWidget {
-  const NoteCard({
-    super.key,
-    required this.title,
-    required this.description,
-    required this.date,
-    required this.noteCardColor,
-  });
-
-  final String title;
-  final String description;
-  final String date;
-  final Color noteCardColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: noteCardColor,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          // Title Row with Delete Icon
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(title, style: AppTextStyles.noteTitle),
-              IconButton(
-                icon: const Icon(
-                  Icons.delete,
-                  size: 25,
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-
-          // Description Text
-          Text(description,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              style: AppTextStyles.noteDescription),
-
-          // Date Text
-          Text(date, style: AppTextStyles.noteDate),
-        ],
-      ),
-    );
-  }
-}
-
-*/

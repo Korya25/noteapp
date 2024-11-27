@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notesapp/constants/key_word.dart';
+import 'package:notesapp/cubits/notes_cuibt.dart/notes_cuibt.dart';
 import 'package:notesapp/cubits/theme_cubit/theme_cuibt.dart';
 import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/screens/notes_view.dart';
@@ -15,14 +16,13 @@ void main() async {
   runApp(
     MultiBlocProvider(providers: [
       BlocProvider(create: (context) => ThemeCubit()),
+      BlocProvider(create: (context) => NoteCuibt()..fetchAllNotes()),
     ], child: const MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeState>(

@@ -7,8 +7,9 @@ import 'package:notesapp/models/note_model.dart';
 class NoteCuibt extends Cubit<NoteState> {
   NoteCuibt() : super(NoteIntial());
   List<NoteModel>? notes;
-  fetchAllNotes() async {
+  fetchAllNotes() {
     var notesBox = Hive.box<NoteModel>(kNotesBox);
-    notes = notesBox.values.toList();
+    notes = notesBox.values.where((note) => note.isInBox).toList();
+    emit(NotesSuccess());
   }
 }
