@@ -1,16 +1,10 @@
-import 'package:notesapp/models/note_model.dart';
-
 class AddNoteState {}
 
 class AddNoteIntial extends AddNoteState {}
 
 class AddNoteLoading extends AddNoteState {}
 
-class AddNoteSuccess extends AddNoteState {
-  final List<NoteModel> notes;
-
-  AddNoteSuccess(this.notes);
-}
+class AddNoteSuccess extends AddNoteState {}
 
 class AddNotefailure extends AddNoteState {
   final String errMessage;

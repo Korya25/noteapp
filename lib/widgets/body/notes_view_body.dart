@@ -1,6 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notesapp/cubits/notes_cuibt.dart/notes_cuibt.dart';
+import 'package:notesapp/cubits/notes_cuibt.dart/notes_cuibt_state.dart';
+import 'package:notesapp/models/note_model.dart';
 import 'package:notesapp/widgets/main/NoteCardWidget.dart';
 
 class NotesViewBody extends StatelessWidget {
@@ -18,14 +22,19 @@ class NotesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 2,
-      itemBuilder: (BuildContext context, int index) {
-        return NoteCard(
-          title: 'Flutter tips',
-          description: "Learn the best practices in Dart programming.",
-          date: 'June 12, 2023',
-          noteCardColor: _generateRandomColor(),
+    return BlocBuilder<NoteCuibt, NoteState>(
+      builder: (context, state) {
+        List<NoteModel> notes = BlocProvider.of<NoteCuibt>(context).notes ?? [];
+        return ListView.builder(
+          itemCount: notes.length,
+          itemBuilder: (BuildContext context, int index) {
+            return NoteCard(
+              title: 'Flutter tips',
+              description: "Learn the best practices in Dart programming.",
+              date: 'June 12, 2023',
+              noteCardColor: _generateRandomColor(),
+            );
+          },
         );
       },
     );
