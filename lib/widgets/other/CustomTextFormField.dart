@@ -5,23 +5,26 @@ import 'package:notesapp/constants/text_style.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.onChanged,
     required this.labelText,
+    this.onSaved,
     this.maxLines = 1,
-    this.validator, // Default to single-line text field
   });
 
-  final ValueChanged<String> onChanged;
+  final void Function(String?)? onSaved;
   final String labelText;
   final int maxLines;
-  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: kPrimariyColor,
-      validator: validator,
-      onChanged: onChanged,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return "Field cannot be empty";
+        }
+        return null;
+      },
+      onSaved: onSaved,
       maxLines: maxLines, // Allow multiple lines
       decoration: InputDecoration(
         labelText: labelText,

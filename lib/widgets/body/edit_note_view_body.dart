@@ -25,24 +25,15 @@ class EdiNoteViewBody extends StatelessWidget {
               ),
             ),
             CustomTextFormField(
-              onChanged: (value) {
-                // Handle title input
-              },
               labelText: 'Title',
-              validator: (value) {
-                return null;
-              },
+              onSaved: (value) {},
             ),
             const SizedBox(height: 12),
             CustomTextFormField(
-              onChanged: (value) {
-                // Handle content input
-              },
               labelText: 'Content',
               maxLines: 6, // Increase the height by allowing multiple lines
-              validator: (value) {
-                return null;
-              },
+
+              onSaved: (value) {},
             ),
           ],
         ),
