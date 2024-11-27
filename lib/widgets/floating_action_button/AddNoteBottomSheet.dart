@@ -9,13 +9,15 @@ class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.all(16.0),
+    return BlocProvider(
+      create: (context) => AddNoteCuibt(),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: BlocConsumer<AddNoteCuibt, AddNoteState>(
           builder: (context, state) {
             return ModalProgressHUD(
                 inAsyncCall: state is AddNoteLoading ? true : false,
-                child: AddNoteForm());
+                child: const AddNoteForm());
           },
           listener: (context, state) {
             if (state is AddNotefailure) {
@@ -26,6 +28,8 @@ class AddNoteBottomSheet extends StatelessWidget {
               Navigator.pop(context);
             }
           },
-        ));
+        ),
+      ),
+    );
   }
 }

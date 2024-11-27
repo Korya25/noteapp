@@ -19,7 +19,7 @@ class NotesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 50,
+      itemCount: 2,
       itemBuilder: (BuildContext context, int index) {
         return NoteCard(
           title: 'Flutter tips',
