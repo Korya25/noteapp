@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:notesapp/widgets/NoteCardWidget.dart';
+import 'package:notesapp/widgets/main/NoteCardWidget.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});

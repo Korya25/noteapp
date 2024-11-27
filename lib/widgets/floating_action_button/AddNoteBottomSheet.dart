@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/widgets/CustomTextFormField.dart';
-import 'package:notesapp/widgets/add_note_button.dart';
+import 'package:notesapp/widgets/other/CustomTextFormField.dart';
+import 'package:notesapp/widgets/button/add_note_button.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});

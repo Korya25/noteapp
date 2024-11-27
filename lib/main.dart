@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notesapp/cubits/theme_cubit/theme_cuibt.dart';
-import 'package:notesapp/screens/edit_view.dart';
 import 'package:notesapp/screens/notes_view.dart';
 
 void main() {

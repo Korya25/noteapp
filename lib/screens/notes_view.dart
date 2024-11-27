@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/constants/text_style.dart';
-import 'package:notesapp/widgets/customSearchIcon.dart';
-import 'package:notesapp/widgets/custom_floating_action_button.dart';
-import 'package:notesapp/widgets/notes_view_body.dart';
-import 'package:notesapp/widgets/notes_app_bar_title.dart';
+import 'package:notesapp/widgets/icon/customSearchIcon.dart';
+import 'package:notesapp/widgets/floating_action_button/custom_floating_action_button.dart';
+import 'package:notesapp/widgets/body/notes_view_body.dart';
+import 'package:notesapp/widgets/main/notes_app_bar_title.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});

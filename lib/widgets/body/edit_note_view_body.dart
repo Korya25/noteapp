@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/constants/text_style.dart';
-import 'package:notesapp/widgets/CustomTextFormField.dart';
-import 'package:notesapp/widgets/SubmitedEdiNoteIcon.dart';
-import 'package:notesapp/widgets/notes_app_bar_title.dart';
+import 'package:notesapp/widgets/other/CustomTextFormField.dart';
+import 'package:notesapp/widgets/icon/SubmitedEdiNoteIcon.dart';
+import 'package:notesapp/widgets/main/notes_app_bar_title.dart';
 
 class EdiNoteViewBody extends StatelessWidget {
   const EdiNoteViewBody({super.key});
@@ -29,7 +29,9 @@ class EdiNoteViewBody extends StatelessWidget {
                 // Handle title input
               },
               labelText: 'Title',
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             const SizedBox(height: 12),
             CustomTextFormField(
@@ -38,7 +40,9 @@ class EdiNoteViewBody extends StatelessWidget {
               },
               labelText: 'Content',
               maxLines: 6, // Increase the height by allowing multiple lines
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
           ],
         ),
