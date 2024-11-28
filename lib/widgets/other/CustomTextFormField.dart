@@ -8,9 +8,11 @@ class CustomTextFormField extends StatelessWidget {
     required this.labelText,
     this.onSaved,
     this.maxLines = 1,
+    this.onChanged,
   });
 
   final void Function(String?)? onSaved;
+  final void Function(String)? onChanged;
   final String labelText;
   final int maxLines;
 
@@ -24,6 +26,7 @@ class CustomTextFormField extends StatelessWidget {
         }
         return null;
       },
+      onChanged: onChanged,
       onSaved: onSaved,
       maxLines: maxLines, // Allow multiple lines
       decoration: InputDecoration(

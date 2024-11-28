@@ -32,7 +32,7 @@ class NotesViewBody extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return NoteCard(
               noteCardColor: _generateRandomColor(),
-              note: notes[index], // استخدام العنصر المناسب
+              note: notes[index],
             );
           },
         );
